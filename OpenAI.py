@@ -20,6 +20,7 @@ openai.api_key = read_file(api_key_file)
 prompt = input("\nAsk a question to ChatGPT here: ")
 engine = "text-davinci-003"
 
+
 # Make a request to the OpenAI API
 response = openai.Completion.create(
     engine=engine,
@@ -30,22 +31,22 @@ response = openai.Completion.create(
     temperature=0.8,
 )
 
-# Parse the response
-generated_text = response.choices[0].text
-
 # Get the response timestamp (not really sure if this is accurate)
 response_timestamp = time.time()
+
+# Parse the response
+generated_text = response.choices[0].text
 
 # Format the response
 formatted_text = generated_text.replace(". ", ".\n")
 
+# Calculate processing time (not really sure if this is accurate)
+create_timestamp = response.get('created') # This is the request creation timestamp as reported by the OpenAI API
+process_time = (response_timestamp - create_timestamp)
+
 # Get input (prompt) and output text lengths
 prompt_length = len(prompt)
 output_length = len(generated_text)
-
-# Calculate processing time (not really sure if this is accurate)
-create_timestamp = response.get('created')
-process_time = (response_timestamp - create_timestamp)
 
 # Do some analytics
 prompt_usage = response.get('usage').get('prompt_tokens')
