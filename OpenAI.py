@@ -31,11 +31,11 @@ response = openai.Completion.create(
     temperature=0.8,
 )
 
-# Get the response timestamp (not really sure if this is accurate)
-response_timestamp = time.time()
-
 # Parse the response
 generated_text = response.choices[0].text
+
+# Get the response timestamp (not really sure if this is accurate)
+response_timestamp = time.time()
 
 # Format the response
 formatted_text = generated_text.replace(". ", ".\n")
