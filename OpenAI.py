@@ -57,6 +57,7 @@ total_ratio = round((prompt_length + output_length) / token_usage, 2)
 tt_ratio = round(completion_usage / process_time, 2)
 
 # Print the output
+print(formatted_text)
 print(f'\nThe length of the prompt text is', prompt_length, 'characters.')
 print(f'\nThe length of the output text is', output_length, 'characters.')
 print(f'\nThe total cost of this this operation is', token_usage, 'tokens; the prompt consumed', prompt_usage,
@@ -65,9 +66,7 @@ print(f'\nThe total cost of this this operation is', token_usage, 'tokens; the p
 print(f'\nThe average prompt text length for one consumed prompt token is:', prompt_ratio, 'characters.')
 print(f'\nThe average output text length for one consumed output token is:', output_ratio, 'characters.')
 print(f'\nThe average total prompt + output text length for one consumed token is:', total_ratio, 'characters.')
-print(f'\nHere is the answer to your question from ChatGPT:')
-print(formatted_text)
-print(f'\n\nThe processing time required to generate the response was', round(process_time, 2), 'seconds')
+print(f'\nThe processing time required to generate the response was', round(process_time, 2), 'seconds')
 print(
     f'\nThe ratio of tokens required to generate the response and the time (in seconds) taken to generate the '
     f'response is',
