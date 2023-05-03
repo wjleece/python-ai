@@ -1,8 +1,9 @@
 import openai
 import time
 
-openai.organization = "org-2i9lWrQ8cRtI1wG0HtxcAV9e"
-openai.api_key = "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"
+# Replace with your organization's ID and API key
+openai.organization = $org-id
+openai.api_key = $API-key
 
 # Set up a prompt and model engine
 prompt = input("\nAsk a question to ChatGPT here: ")
