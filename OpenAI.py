@@ -19,16 +19,24 @@ response = openai.Completion.create(
     temperature=0.8,
 )
 
-# Print the generated text
+# Parse the response
 generated_text = response.choices[0].text
+
+# Get the response timestamp (not really sure if this is accurate)
 response_timestamp = time.time()
+
+# Format the response
 formatted_text = generated_text.replace(". ", ".\n")
 
+# Get input (prompt) and output text lengths
 prompt_length = len(prompt)
 output_length = len(generated_text)
 
+# Calculate processing time (not really sure if this is accurate)
 create_timestamp = response.get('created')
 process_time = (response_timestamp - create_timestamp)
+
+# Do some analytics
 prompt_usage = response.get('usage').get('prompt_tokens')
 completion_usage = response.get('usage').get('completion_tokens')
 token_usage = response.get('usage').get('total_tokens')
@@ -37,7 +45,7 @@ output_ratio = round(output_length / completion_usage, 2)
 total_ratio = round((prompt_length + output_length) / token_usage, 2)
 tt_ratio = round(completion_usage / process_time, 2)
 
-# Some analytics
+# Print the output
 print(f'\nThe length of the prompt text is', prompt_length, 'characters.')
 print(f'\nThe length of the output text is', output_length, 'characters.')
 print(f'\nThe total cost of this this operation is', token_usage, 'tokens; the prompt consumed', prompt_usage,
