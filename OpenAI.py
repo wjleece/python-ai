@@ -1,20 +1,20 @@
 import openai
+import os
 import time
 
-# Replace with your organization's ID and API key
-openai.organization = $org-id
 
-# Get API key
-# Create a file called api-key.txt and save your API key there
-# This will prevent you from accidentally exposing your API key
-def read_api_key(file_path):
+# Get org ID & API key from files
+def read_file(file_path):
     with open(file_path, 'r') as f:
         return f.read().strip()
 
 script_dir = os.path.dirname(os.path.abspath(__file__))  # Get the absolute path of the script
+org_id_file = os.path.join(script_dir, "org-id.txt")  # Construct the path to the org-id.txt file
 api_key_file = os.path.join(script_dir, "api-key.txt")  # Construct the path to the api-key.txt file
 
-openai.api_key = read_api_key(api_key_file)
+openai.organization = read_file(org_id_file)
+openai.api_key = read_file(api_key_file)
+
 
 # Set up a prompt and model engine
 prompt = input("\nAsk a question to ChatGPT here: ")
