@@ -1,8 +1,8 @@
 import openai
 import time
 
-openai.organization="org-2i9lWrQ8cRtI1wG0HtxcAV9e"
-openai.api_key="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"
+openai.organization=$OpenAI-org-key
+openai.api_key=$OpenAI-API-key
 
 # Set up a prompt and model engine
 prompt = input("\nAsk a question to ChatGPT here: ")
