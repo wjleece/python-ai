@@ -40,15 +40,17 @@ def respond_to_messages(messages):
 print("How can I help you? (Type 'quit' to exit)")
 user_input = input("")  # Initial user request
 messages.append({"role": "user", "content": user_input})  # append user request to messages
-    # The while loop below enables the interactivity between the user and the GPT assistant
-    # We stay in this while loop untl either the user types 'quit'
-    # Or if the assistant determines that the conversation is over
+
+
+# The while loop below enables the interactivity between the user and the GPT assistant
+# We stay in this while loop until either the user types 'quit'
+# Or if the assistant determines that the conversation is over
 
 def chat(user_input, messages):
     while user_input.lower() != "quit":
         if user_input.lower() == "quit":
             break
-        response = respond_to_messages(messages)  # ChatGPT's assistant response initial user request
+        response = respond_to_messages(messages)  # ChatGPT assistant's response initial user request
         messages.append({"role": "assistant", "content": response})  # append assistant response to messages
         if "Interaction complete" in response:
             break
@@ -56,6 +58,7 @@ def chat(user_input, messages):
             print(response)
         user_input = input("")  # User enters subsequent request
         messages.append({"role": "user", "content": user_input})  # add subsequent user request to conversation
+
 
 if __name__ == "__main__":
     chat(user_input, messages)
