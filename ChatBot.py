@@ -3,8 +3,6 @@ import os
 
 # Define the OpenAI model to be used
 model = "gpt-3.5-turbo"
-max_tokens = 1000
-
 
 # Get org ID & API key from files
 def read_file(file_path):
