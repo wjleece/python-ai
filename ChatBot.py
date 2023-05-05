@@ -17,11 +17,10 @@ api_key_file = os.path.join(script_dir, "api-key.txt")  # Construct the path to 
 openai.organization = read_file(org_id_file)
 openai.api_key = read_file(api_key_file)
 
-messages = [
-    {"role": "system", "content": "You are a helpful assistant who answers questions\
+messages = [{"role": "system", "content": "You are a helpful assistant who answers questions \
 If you think that a user may be finished with a set of questions, you can ask them if they have any further questions \
 If they say yes, then continue helping them \
-If they say no, then thank them and send an additional message of 'Interaction complete'"}]
+If they say no, thank them and send an additional message of 'Interaction complete'"}]
 
 
 # Make a request to the OpenAI API
