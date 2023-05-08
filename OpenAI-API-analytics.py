@@ -18,21 +18,21 @@ openai.api_key = read_file(api_key_file)
 
 # Set up a prompt and model engine
 prompt = input("\nAsk a question to ChatGPT here: ")
-engine = "text-davinci-003"
+model = "gpt-3.5-turbo"
 
 
 # Make a request to the OpenAI API
-response = openai.Completion.create(
-    engine=engine,
-    prompt=prompt,
-    max_tokens=1000,
-    n=1,
-    stop=None,
-    temperature=0.8,
+response = openai.ChatCompletion.create(
+    model=model,
+    messages=[{"role": "user", "content": prompt}],
+   # max_tokens=1000,
+   # n=1,
+   # stop=None,
+    temperature=0.8
 )
 
 # Parse the response
-generated_text = response.choices[0].text
+generated_text = response.choices[0].message["content"]
 
 # Get the response timestamp (not really sure if this is accurate)
 response_timestamp = time.time()
