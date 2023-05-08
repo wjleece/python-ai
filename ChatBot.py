@@ -20,7 +20,7 @@ openai.api_key = read_file(api_key_file)
 messages = [{"role": "system", "content": "You are a helpful assistant who answers questions \
 If you think that a user may be finished with a set of questions, you can ask them if they have any further questions \
 If they say yes, then continue helping them \
-If they say no, thank them and send an additional message of 'Interaction complete'"}]
+If they say no, thank them and send an additional separate stand alone message of 'Interaction complete'"}]
 
 
 # Make a request to the OpenAI API
@@ -50,11 +50,11 @@ def chat(user_input, messages):
         response = respond_to_messages(messages)  # ChatGPT assistant's response initial user request
         messages.append({"role": "assistant", "content": response})  # append assistant response to messages
         if "Interaction complete" in response:
+            print(response.replace("Interaction complete.",""))
             break
         else:
-            print(response)
-        user_input = input("")  # User enters subsequent request
-        messages.append({"role": "user", "content": user_input})  # add subsequent user request to conversation
+            user_input = input("")  # User enters subsequent request
+            messages.append({"role": "user", "content": user_input})  # add subsequent user request to conversation
 
 
 if __name__ == "__main__":
