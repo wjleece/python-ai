@@ -53,6 +53,7 @@ def chat(user_input, messages):
             print(response.replace("Interaction complete.",""))
             break
         else:
+            print(response)
             user_input = input("")  # User enters subsequent request
             messages.append({"role": "user", "content": user_input})  # add subsequent user request to conversation
 
