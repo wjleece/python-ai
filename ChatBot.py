@@ -2,7 +2,7 @@ import openai
 import os
 
 # Define the OpenAI model to be used
-model = "gpt-3.5-turbo"
+model = "gpt-4"
 
 # Get org ID & API key from files
 def read_file(file_path):
