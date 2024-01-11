@@ -21,7 +21,6 @@ prompt = input("\nAsk a question to ChatGPT here: ")
 model = "gpt-4"
 
 
-# Make a request to the OpenAI API
 response = openai.ChatCompletion.create(
     model=model,
     messages=[{"role": "system", "content": "You are a helpful assistant."},
@@ -30,14 +29,14 @@ response = openai.ChatCompletion.create(
     temperature=0.8
 )
 
-# Parse the response
-generated_text = response.choices[0].message["content"]
+# Print the response
+response_text=response.choices[0].message['content'].strip()
+response_text += '\n'
+print(response_text)
 
 # Get the response timestamp (not really sure if this is accurate)
 response_timestamp = time.time()
 
-# Format the response
-formatted_text = generated_text.replace(". ", ".\n")
 
 # Calculate processing time (not really sure if this is accurate)
 create_timestamp = response.get('created') # This is the request creation timestamp as reported by the OpenAI API
@@ -45,7 +44,7 @@ process_time = (response_timestamp - create_timestamp)
 
 # Get input (prompt) and output text lengths
 prompt_length = len(prompt)
-output_length = len(generated_text)
+output_length = len(response_text)
 
 # Do some analytics
 prompt_usage = response.get('usage').get('prompt_tokens')
@@ -57,7 +56,6 @@ total_ratio = round((prompt_length + output_length) / token_usage, 2)
 tt_ratio = round(completion_usage / process_time, 2)
 
 # Print the output
-print(formatted_text)
 print(f'\nThe length of the prompt text is', prompt_length, 'characters.')
 print(f'\nThe length of the output text is', output_length, 'characters.')
 print(f'\nThe total cost of this this operation is', token_usage, 'tokens; the prompt consumed', prompt_usage,
