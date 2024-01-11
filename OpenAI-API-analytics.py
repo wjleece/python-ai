@@ -18,13 +18,15 @@ openai.api_key = read_file(api_key_file)
 
 # Set up a prompt and model engine
 prompt = input("\nAsk a question to ChatGPT here: ")
-model = "gpt-3.5-turbo"
+model = "gpt-4"
 
 
 # Make a request to the OpenAI API
 response = openai.ChatCompletion.create(
     model=model,
-    messages=[{"role": "user", "content": prompt}],
+    messages=[{"role": "system", "content": "You are a helpful assistant."},
+              {"role": "user", "content": prompt}],
+    max_tokens=1000,
     temperature=0.8
 )
 
